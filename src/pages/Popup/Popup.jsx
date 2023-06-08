@@ -107,7 +107,7 @@ const Popup = () => {
                   <Link to="/Newtab" className="navbar-menu-link">Home</Link>
                 </li>
                 <li className="navbar-menu-item">
-                  <Link to="/about" className="navbar-menu-link">About</Link>
+                  <Link to="/Newtab" className="navbar-menu-link">About</Link>
                 </li>
               </ul>
             </div>

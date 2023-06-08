@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
+import React, { useState } from 'react';
 import './Newtab.css';
-import './Newtab.scss';
+
 
 const Newtab = () => {
+  const [wei, setWei] = useState('');
+  const [gwei, setGwei] = useState('');
+  const [eth, setEth] = useState('');
+
+  const handleWeiChange = (value) => {
+    setWei(value);
+    setGwei((parseFloat(value) / 10 ** 9).toString());
+    setEth((parseFloat(value) / 10 ** 18).toString());
+  };
+
+  const handleGweiChange = (value) => {
+    setGwei(value);
+    setWei((parseFloat(value) * 10 ** 9).toString());
+    setEth((parseFloat(value) / 10 ** 9 / 10 ** 9).toString());
+  };
+
+  const handleEthChange = (value) => {
+    setEth(value);
+    setWei((parseFloat(value) * 10 ** 18).toString());
+    setGwei((parseFloat(value) * 10 ** 9 * 10 ** 9).toString());
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Newtab/Newtab.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-        <h6>The color of this paragraph is defined using SASS.</h6>
-      </header>
+    <div className="calculator">
+      <div className="inputs">
+        <input
+          type="number"
+          placeholder="Wei"
+          value={wei}
+          onChange={(e) => handleWeiChange(e.target.value)}
+        />
+        <span>Wei</span>
+        <input
+          type="number"
+          placeholder="Gwei"
+          value={gwei}
+          onChange={(e) => handleGweiChange(e.target.value)}
+        />
+        <span>Gwei</span>
+        <input
+          type="number"
+          placeholder="ETH"
+          value={eth}
+          onChange={(e) => handleEthChange(e.target.value)}
+        />
+        <span>ETH</span>
+      </div>
     </div>
   );
 };
